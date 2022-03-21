@@ -1,9 +1,15 @@
 from rest_framework import serializers
-from .models import DisasterAlerts
+from .models import SendReport, EcoContribution
 
 
-class DisasterAlertsSerializer(serializers.ModelSerializer):
+class SendReportSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = DisasterAlerts
+        model = SendReport
+        fields = '__all__'
+
+class EcoContributionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EcoContribution
         fields = '__all__'

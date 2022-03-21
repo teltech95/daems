@@ -1,10 +1,15 @@
 
 from rest_framework import viewsets
-from .serializers import DisasterAlertsSerializer
-from .models import DisasterAlerts
+from .serializers import SendReportSerializer, EcoContributionSerializer
+from .models import SendReport, EcoContribution
 
 
-class DisasterAlertsViewSet(viewsets.ModelViewSet):
+class SendReportViewSet(viewsets.ModelViewSet):
 
-    serializer_class = DisasterAlertsSerializer
-    queryset = DisasterAlerts.objects.all()
+    serializer_class = SendReportSerializer
+    queryset = SendReport.objects.all()
+
+class EcoContributionViewSet(viewsets.ModelViewSet):
+
+    serializer_class = EcoContributionSerializer
+    queryset = EcoContribution.objects.all()

@@ -10,6 +10,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework import permissions
 #from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -24,13 +26,23 @@ class UserSerializer(generics.GenericAPIView):
     @swagger_auto_schema(operation_summary="Create a user account by signing Up")
     def post(self, request):
         data = request.data
-
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
 
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+            status_code = status.HTTP_200_OK
+            response = {
+                'success': True,
+                'statusCode': status_code,
+                'message': 'User created successfully',
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ5OTY5NTk5LCJqdGkiOiI0ZThiZWE5YzlmYTY0ZTMzOWJiNmFjYzVmZWI2MzQ3OCIsInVzZXJfaWQiOjV9.MT--G7U3oWsL6nUIYcd_z8ilbhUCN09izc_w27RpUhM",
+                'username': serializer.data['username'],
+                'email': serializer.data['email'],
+
+            }
+
+            return Response(response, status=status.HTTP_201_CREATED)
 
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

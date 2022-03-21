@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='/home/teltech/Dev/disaster/env'
+VIRTUAL_ENV='/home/teltech/Dev2/AlertProject/server/env'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

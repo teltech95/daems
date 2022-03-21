@@ -1,4 +1,4 @@
-#!/home/teltech/Dev/disaster/env/bin/python
+#!/home/teltech/Dev2/AlertProject/server/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
